@@ -12,5 +12,21 @@ export default {
         return { user, token };
 
     },
+    async login(email, password) {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            throw new Error('Invalid email or password!');
+        }
+
+        const isValid = await bcrypt.compare(password, user.password);
+
+        if (!isValid) {
+            throw new Error('Invalid email or password!');
+        }
+
+        const token = generateToken(user);
+
+        return { user, token };
     }
 }
