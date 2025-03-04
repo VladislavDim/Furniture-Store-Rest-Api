@@ -2,7 +2,7 @@
 server/node_modules/
 server/.env
 server/package-lock.json
-
+server/src/config.js
 # (Client)
 /client/
 
