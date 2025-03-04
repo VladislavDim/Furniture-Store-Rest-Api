@@ -14,6 +14,7 @@ userController.post('/register', async (req, res) => {
         email: user.email
     });
 });
+
 userController.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
