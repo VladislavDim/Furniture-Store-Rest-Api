@@ -6,9 +6,14 @@ const userController = Router();
 userController.post('/register', async (req, res) => {
     const userData = req.body;
 
-    const createdUser = await userService.register(userData);
-    //TODO: login
-    res.json({});
+    const { user, token } = await userService.register(userData);
+
+    res.json({
+        _id: user.id,
+        accessToken: token,
+        email: user.email
+    });
+});
 });
 
 export default userController;
