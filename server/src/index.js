@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import routes from './routes.js';
+import { auth } from './middlewares/authMiddleware.js';
 
 const app = express();
 
@@ -21,6 +22,7 @@ try {
 // });
 app.use(express.json());
 app.use(cors());
+app.use(auth);
 app.use(routes);
 
 app.listen(3030, () => console.log('RESTful server os running on http://localhost:3030...'));
