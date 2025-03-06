@@ -20,6 +20,14 @@ export const auth = async (req, res, next) => {
     } catch (error) {
         return res.json({ error: 'Invalid token!' });
     }
-    
+
+    next();
+};
+
+export const isAuth = (req, res, next) => {
+    if (!req.user) {
+        return res.end();
+    }
+
     next();
 };
