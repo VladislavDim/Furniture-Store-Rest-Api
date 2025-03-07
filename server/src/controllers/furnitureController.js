@@ -4,6 +4,25 @@ import { isAuth } from "../middlewares/authMiddleware.js";
 
 const furnitureController = Router();
 
+//get all
+furnitureController.get('/', async (req, res) => {
+    let filter = req.query.where;
+    
+    if (filter) {
+        const [key, value] = filter?.split('=');
+
+        filter = {
+            [key]: value.replaceAll('"', '').trim()
+        }
+    } else {
+        filter = {};
+    }
+
+    const furnitures = await furnitureService.getAll(filter);
+
+    res.json(furnitures);
+});
+
 //get one
 furnitureController.get('/:furnitureId', async (req, res) => {
     const furnitureId = req.params.furnitureId;
