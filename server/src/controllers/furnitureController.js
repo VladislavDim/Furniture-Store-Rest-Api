@@ -12,4 +12,9 @@ furnitureController.post('/', isAuth, async (req, res) => {
 
     res.json(furniture);
 });
+//delete
+furnitureController.delete('/:furnitureId', async (req, res) => {
+    await furnitureService.delete(req.params.furnitureId);
+    res.json([]);
+});
 export default furnitureController;
