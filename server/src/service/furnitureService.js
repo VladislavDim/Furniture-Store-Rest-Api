@@ -8,7 +8,8 @@ export default {
         return Furniture.findById(furnitureId)
     },
     create(furnitureData, userId) {
-        return Furniture.create({ ...furnitureData, creator: userId });
+        return Furniture.create({ ...furnitureData, _ownerId: userId });
+    },
     delete(furnitureId) {
         return Furniture.findByIdAndDelete(furnitureId);
     }
