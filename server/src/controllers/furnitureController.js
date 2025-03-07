@@ -4,6 +4,13 @@ import { isAuth } from "../middlewares/authMiddleware.js";
 
 const furnitureController = Router();
 
+//get one
+furnitureController.get('/:furnitureId', async (req, res) => {
+    const furnitureId = req.params.furnitureId;
+    const furniture = await furnitureService.getOne(furnitureId);
+    res.json(furniture);
+});
+
 //create
 furnitureController.post('/', isAuth, async (req, res) => {
     const furnitureData = req.body;
